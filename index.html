@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DASHBOARD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SERVER DASHBOARD</h1>
+    </header>
+
+    <section class="server-info">
+      <h2>Server Info</h2>
+      <div id="server-status" class="status offline">Server Offline</div>
+      <div id="server-ip" class="server-ip">IP: 192.168.1.1</div>
+      <div id="server-players" class="server-players">Players: 10/100</div>
+    </section>
+
+    <section class="controls">
+      <h2>Server Controls</h2>
+      <button id="start-btn">Start Server</button>
+      <button id="stop-btn" class="disabled" disabled>Stop Server</button>
+    </section>
+
+    <section class="logs">
+      <h2>Server Logs</h2>
+      <div id="logs">
+        <p>No logs available.</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+  	document.addEventListener('DOMContentLoaded', () => {
+  const startBtn = document.getElementById('start-btn');
+  const stopBtn = document.getElementById('stop-btn');
+  const serverStatus = document.getElementById('server-status');
+  const logs = document.getElementById('logs');
+  startBtn.addEventListener('click', () => {
+    serverStatus.textContent = 'Server Online';
+    serverStatus.classList.remove('offline');
+    serverStatus.classList.add('online');
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    stopBtn.classList.remove('disabled');
+    logs.innerHTML = '<p>Server started successfully.</p>';
+  });
+  stopBtn.addEventListener('click', () => {
+    serverStatus.textContent = 'Server Offline';
+    serverStatus.classList.remove('online');
+    serverStatus.classList.add('offline');
+    stopBtn.disabled = true;
+    startBtn.disabled = false;
+    startBtn.classList.remove('disabled');
+    logs.innerHTML += '<p>Server stopped.</p>';
+  });
+});
+  </script>
+</body>
+</html>
